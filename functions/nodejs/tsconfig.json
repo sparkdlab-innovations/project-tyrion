@@ -1,0 +1,45 @@
+{
+  "compileOnSave": true,
+  "compilerOptions": {
+    "module": "commonjs",
+    "noImplicitReturns": true,
+    "noUnusedLocals": true,
+    "outDir": "lib",
+    // "sourceMap": true,
+    // "strict": true,
+    "target": "es2017",
+    //
+    "importHelpers": true,
+    "strict": true,
+    "noImplicitAny": true,
+    "removeComments": true,
+    "preserveConstEnums": true,
+    "allowJs": false,
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "esModuleInterop": true,
+    "sourceMap": true,
+    "declaration": true,
+    "typeRoots": ["./src/types", "node_modules/@types"],
+    "lib": [
+      "ES5",
+      "DOM",
+      "ES2015.Promise",
+      "ES2015.Symbol",
+      "ES2015.Iterable",
+      "ES2015.Collection",
+      "ES2015.Symbol.WellKnown",
+      "ES2015.Core",
+      "ES2017.Object",
+      "ES2017.String"
+    ],
+    // "module": "ES2015",
+    // "target": "es5",
+    // "outDir": "./dist",
+    "types": ["node"],
+    "declarationDir": "lib/types"
+  },
+  "include": ["src"],
+  "exclude": ["node_modules", "**/__tests__/*"]
+}
+
