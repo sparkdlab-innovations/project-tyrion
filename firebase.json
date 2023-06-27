@@ -1,0 +1,55 @@
+{
+	"firestore": {
+		"rules": "firebase/firestore.rules",
+		"indexes": "firebase/firestore.indexes.json"
+	},
+	"functions": [
+		{
+			"source": "functions/nodejs",
+			"codebase": "nodejs-default",
+			"ignore": ["node_modules", ".git", "*.log", "firebase-debug.*.log", ".*"],
+			"predeploy": ["npm --prefix \"$RESOURCE_DIR\" run lint", "npm --prefix \"$RESOURCE_DIR\" run build"]
+		},
+		{
+			"source": "functions/python",
+			"codebase": "python-default",
+			"ignore": ["venv", ".git", "*.log", "firebase-debug.*.log", ".*"]
+		}
+	],
+	"hosting": {
+		"public": "app/build/web",
+		"ignore": ["firebase.json", "**/.*", "**/node_modules/**"],
+		"rewrites": [
+			{
+				"source": "**",
+				"destination": "/index.html"
+			}
+		]
+	},
+	"emulators": {
+		"auth": {
+			"port": 9099,
+			"host": "0.0.0.0"
+		},
+		"functions": {
+			"port": 5001,
+			"host": "0.0.0.0"
+		},
+		"firestore": {
+			"port": 8080,
+			"host": "0.0.0.0"
+		},
+		"hosting": {
+			"port": 5000,
+			"host": "0.0.0.0"
+		},
+		"ui": {
+			"enabled": true
+		},
+		"singleProjectMode": true
+	},
+	"remoteconfig": {
+		"template": "firebase/remoteconfig.template.json"
+	},
+	"extensions": {}
+}
