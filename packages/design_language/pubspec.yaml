@@ -1,0 +1,20 @@
+name: design_language
+description: A design language creator for flutter inspired by material design.
+version: 1.0.0
+homepage: https://github.com/rutajdash/flutter_design_language
+
+environment:
+  sdk: ">=3.0.2 <4.0.0"
+  flutter: ">=1.17.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  material_color_utilities: ^0.2.0
+
+dev_dependencies:
+  flutter_lints: ^2.0.0
+  flutter_test:
+    sdk: flutter
+
+flutter: null
