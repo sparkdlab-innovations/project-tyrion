@@ -1,0 +1,14 @@
+Luxury Gold (success, luxury, and abundance): #FFD700
+Navy Blue (security, trust, loyalty, and responsibility): #000080
+Obsidian Black (protection, power, elegance, and sophistication): #020403
+Royal Purple (royalty): #7851A9
+
+Mix:
+Gold - 15% - 3/20
+Blue - 35% - 7/20
+Black - 20% - 4/20
+Purple - 30% - 6/20
+
+(15% Gold + 35% Blue) + (20% Black + 30% Pruple)
+= (50% #4D415A) + (50% #493267)
+= #4B3A61
