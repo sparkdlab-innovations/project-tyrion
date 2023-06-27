@@ -1,6 +1,6 @@
 <p align="center">
   <a href="https://github.com/rutajdash/project-tyrion">
-    <img src="repoImages/logo.png" alt="Project Tyrion Logo" width="130">
+    <img src="resources/repo/logo.png" alt="Project Tyrion Logo" width="130">
   </a>
 
   <h3 align="center">Project Tyrion</h3>
@@ -104,7 +104,6 @@ Distributed under the MIT License. See [`License`](license-url) for more informa
 [issues-shield]: https://img.shields.io/github/issues/rutajdash/project-tyrion?style=for-the-badge
 [issues-url]: https://github.com/rutajdash/project-tyrion/issues
 [license-shield]: https://img.shields.io/github/license/rutajdash/project-tyrion?style=for-the-badge
-[license-url]: https://github.com/rutajdash/project-tyrion/blob/main/LICENSE.txt
-[home-screen]: repoImages/homeScreen.png
-[repo-cover]: repoImages/cover.png
-[repo-logo]: repoImages/logo.png
+[license-url]: https://github.com/rutajdash/project-tyrion/blob/main/LICENSE
+[repo-cover]: resources/repo/cover.png
+[repo-logo]: resources/repo/logo.png
