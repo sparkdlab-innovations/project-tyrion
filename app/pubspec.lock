@@ -359,7 +359,7 @@ packages:
       path: "../packages/design_language"
       relative: true
     source: path
-    version: "0.0.1"
+    version: "1.0.0"
   dynamic_color:
     dependency: "direct main"
     description:

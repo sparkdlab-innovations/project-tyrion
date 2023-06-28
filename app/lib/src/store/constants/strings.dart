@@ -16,8 +16,10 @@ abstract class AppStrings {
 
   // Game Dashboard Strings
   static const String gameDashboardTitle = 'Your Games';
-  static const String gameDashboardLatestUpdates = 'Latest Updates';
-  static const String gameDashboardRecommended = 'Recommended Games';
+  static const String gameDashboardLatestUpdates = 'What\'s New';
+  static const String gameDashboardRecommended = 'Our Recommendations';
+  static const String gameDashboardPins = 'Your Pins';
+  static const String gameDashboardOutlook = 'An Outlook';
 
   // Common Words
   static const String commonWordUpdate = 'Update';

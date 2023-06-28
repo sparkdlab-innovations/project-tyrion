@@ -1,6 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
-import 'package:tyrion/src/pages/game_dashboard_page.dart';
+import 'package:tyrion/src/pages/game/game_dashboard_page.dart';
 import 'package:tyrion/src/utils/router/app_router.dart';
 
 class AppSegment {

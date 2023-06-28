@@ -38,7 +38,7 @@ class TyrionApp extends ConsumerWidget {
         themeAnimationDuration: Duration(milliseconds: 1000),
         routerConfig: appRouter.config(
           deepLinkBuilder: (PlatformDeepLink deepLink) {
-            return DeepLink.path(deepLink.path ?? '/');
+            return DeepLink.path(deepLink.path);
           },
         ),
       );

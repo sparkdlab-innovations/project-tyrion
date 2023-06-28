@@ -3,7 +3,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:tyrion/src/data/models/page/home_page/home_page_data.dart';
-import 'package:tyrion/src/data/models/page/home_page/home_page_provider.dart';
+import 'package:tyrion/src/data/providers/home_page/home_page_provider.dart';
 import 'package:tyrion/src/ui/screens/error/compact_error_screen.dart';
 import 'package:tyrion/src/ui/screens/home/home_screen.dart';
 import 'package:tyrion/src/ui/screens/launch/launch_screen.dart';

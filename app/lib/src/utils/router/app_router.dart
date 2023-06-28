@@ -4,7 +4,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/foundation.dart';
 import 'package:tyrion/src/pages/dashboard_page.dart';
 import 'package:tyrion/src/pages/dev_theme_test_page.dart';
-import 'package:tyrion/src/pages/game_dashboard_page.dart';
+import 'package:tyrion/src/pages/game/game_dashboard_page.dart';
 import 'package:tyrion/src/pages/home_page.dart';
 import 'package:tyrion/src/pages/more_page.dart';
 import 'package:tyrion/src/store/constants/strings.dart';
