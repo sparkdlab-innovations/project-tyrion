@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:tyrion/src/store/constants/strings.dart';
 import 'package:tyrion/src/ui/components/game/dashboard/game_updates_overview_card.dart';
 import 'package:tyrion/src/ui/components/game/dashboard/latest_game_updates_card.dart';
+import 'package:tyrion/src/ui/components/game/dashboard/recommended_games_card.dart';
 import 'package:tyrion/src/utils/theme/theme.dart';
 
 class GameDashboardScreen extends StatelessWidget {
@@ -36,6 +37,10 @@ class GameDashboardScreen extends StatelessWidget {
                   height: AppTheme.dl.sys.dimension.baseDimension * 4,
                 ),
                 LatestGameUpdatesCard(),
+                SizedBox(
+                  height: AppTheme.dl.sys.dimension.baseDimension * 4,
+                ),
+                RecommendedGamesCard(),
                 SizedBox(
                   height: AppTheme.dl.sys.dimension.baseDimension * 4,
                 ),
