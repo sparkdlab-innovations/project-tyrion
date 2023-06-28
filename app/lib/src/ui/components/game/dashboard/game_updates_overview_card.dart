@@ -37,8 +37,6 @@ class GameUpdatesOverviewCard extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          // TODO: Add button to go to all updates page
-          // FUCKE: hello wrld
           Text(
             AppStrings.gameDashboardOutlook,
             style: Theme.of(context).textTheme.titleMedium,
@@ -48,7 +46,6 @@ class GameUpdatesOverviewCard extends StatelessWidget {
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
-            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               GameUpdatesOverviewChart(
                 title: AppStrings.commonWordFavourites,

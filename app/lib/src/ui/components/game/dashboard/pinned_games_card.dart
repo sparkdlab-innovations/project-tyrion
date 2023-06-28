@@ -34,8 +34,6 @@ class PinnedGamesCard extends StatelessWidget {
             builder: (context, constraints) {
               return Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
-                mainAxisSize: MainAxisSize.max,
-                crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   GameIconCard(
                     gameId: 'gameId',
@@ -66,8 +64,6 @@ class PinnedGamesCard extends StatelessWidget {
             builder: (context, constraints) {
               return Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
-                mainAxisSize: MainAxisSize.max,
-                crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   GameIconCard(
                     gameId: 'gameId',

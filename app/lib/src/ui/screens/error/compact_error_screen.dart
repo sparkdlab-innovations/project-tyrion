@@ -26,7 +26,6 @@ class CompactErrorScreen extends StatelessWidget {
       padding: AppTheme.dl.sys.dimension.space.edge,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
-        mainAxisSize: MainAxisSize.max,
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           Text(
