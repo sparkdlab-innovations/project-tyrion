@@ -8,6 +8,7 @@ class MorePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // TODO: create a more screen with variations for compact, medium and expanded
     return CustomScrollView(
       slivers: [
         SliverAppBar.large(

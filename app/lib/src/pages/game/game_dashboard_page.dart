@@ -9,6 +9,8 @@ class GameDashboardPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // TODO: implement data fetching with repository
+    // TODO: create a loading shimmer screen
+    // TODO: create variations for compact, medium and expanded
     return GameDashboardScreen();
   }
 }

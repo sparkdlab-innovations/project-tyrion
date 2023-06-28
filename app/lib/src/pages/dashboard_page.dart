@@ -8,6 +8,9 @@ class DashboardPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // TODO: add data fetching with repository
+    // TODO: create a dashboard loading shimmer screen
+    // TODO: create a dashboard screen with variations for compact, medium and expanded
     return CustomScrollView(
       slivers: [
         SliverAppBar.large(
