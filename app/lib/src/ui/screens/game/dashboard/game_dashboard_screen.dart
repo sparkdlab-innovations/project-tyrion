@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:tyrion/src/store/constants/strings.dart';
 import 'package:tyrion/src/ui/components/game/dashboard/game_updates_overview_card.dart';
-import 'package:tyrion/src/ui/components/game/dashboard/latest_updates_card.dart';
+import 'package:tyrion/src/ui/components/game/dashboard/latest_game_updates_card.dart';
 import 'package:tyrion/src/utils/theme/theme.dart';
 
 class GameDashboardScreen extends StatelessWidget {
@@ -35,12 +35,10 @@ class GameDashboardScreen extends StatelessWidget {
                 SizedBox(
                   height: AppTheme.dl.sys.dimension.baseDimension * 4,
                 ),
-                LatestUpdatesCard(
-                  favouriteValues: [1, 2, 3],
-                  followingValues: [1, 2, 3],
+                LatestGameUpdatesCard(),
+                SizedBox(
+                  height: AppTheme.dl.sys.dimension.baseDimension * 4,
                 ),
-
-                // TODO: Latest Updates - show latest 3
                 // TODO: Recommended - show top 3
                 // TODO: Favourites - show top 3 based on personal ranking or pinned
                 // TODO: Following - show top 3 based on most recently updated

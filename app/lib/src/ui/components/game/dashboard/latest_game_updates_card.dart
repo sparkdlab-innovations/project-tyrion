@@ -1,16 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:tyrion/src/store/constants/strings.dart';
-import 'package:tyrion/src/ui/components/game/dashboard/updated_game_card.dart';
+import 'package:tyrion/src/ui/components/shared/game_icon_card.dart';
 import 'package:tyrion/src/utils/theme/theme.dart';
 
-class LatestUpdatesCard extends StatelessWidget {
-  final List<int> favouriteValues;
-  final List<int> followingValues;
-
-  const LatestUpdatesCard({
+class LatestGameUpdatesCard extends StatelessWidget {
+  const LatestGameUpdatesCard({
     super.key,
-    required this.favouriteValues,
-    required this.followingValues,
   });
 
   @override
@@ -31,7 +26,7 @@ class LatestUpdatesCard extends StatelessWidget {
           // TODO: Add button to go to all updates page
           // FUCKE: hello wrld
           Text(
-            '${AppStrings.commonWordLatest} ${AppStrings.commonWordUpdates}',
+            AppStrings.gameDashboardLatestUpdates,
             style: Theme.of(context).textTheme.titleMedium,
           ),
           SizedBox(
@@ -50,9 +45,21 @@ class LatestUpdatesCard extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      UpdatedGameCard(),
-                      UpdatedGameCard(),
-                      UpdatedGameCard(),
+                      GameIconCard(
+                        gameId: 'gameId',
+                        imageUrl:
+                            'https://ik.imagekit.io/tyrion/games/94140/cover.jpg?tr=n-medium_thumbnail',
+                      ),
+                      GameIconCard(
+                        gameId: 'gameId',
+                        imageUrl:
+                            'https://ik.imagekit.io/tyrion/games/94140/cover.jpg?tr=n-medium_thumbnail',
+                      ),
+                      GameIconCard(
+                        gameId: 'gameId',
+                        imageUrl:
+                            'https://ik.imagekit.io/tyrion/games/94140/cover.jpg?tr=n-medium_thumbnail',
+                      ),
                     ],
                   ),
                 ),
