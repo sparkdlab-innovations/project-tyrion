@@ -77,6 +77,77 @@ class GameUpdatesOverviewCard extends StatelessWidget {
               ),
             ],
           ),
+          SizedBox(
+            height: AppTheme.dl.sys.dimension.baseDimension * 2,
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Container(
+                    height: AppTheme.dl.sys.dimension.baseDimension * 2,
+                    width: AppTheme.dl.sys.dimension.baseDimension * 2,
+                    decoration: BoxDecoration(
+                      color: AppTheme.blue,
+                      borderRadius:
+                          AppTheme.dl.sys.dimension.shape.corner.circle,
+                    ),
+                  ),
+                  SizedBox(
+                    width: AppTheme.dl.sys.dimension.baseDimension,
+                  ),
+                  Text(
+                    'No Updates',
+                    style: Theme.of(context).textTheme.bodySmall,
+                  ),
+                ],
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Container(
+                    height: AppTheme.dl.sys.dimension.baseDimension * 2,
+                    width: AppTheme.dl.sys.dimension.baseDimension * 2,
+                    decoration: BoxDecoration(
+                      color: AppTheme.yellow,
+                      borderRadius:
+                          AppTheme.dl.sys.dimension.shape.corner.circle,
+                    ),
+                  ),
+                  SizedBox(
+                    width: AppTheme.dl.sys.dimension.baseDimension,
+                  ),
+                  Text(
+                    'Minor Updates',
+                    style: Theme.of(context).textTheme.bodySmall,
+                  ),
+                ],
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Container(
+                    height: AppTheme.dl.sys.dimension.baseDimension * 2,
+                    width: AppTheme.dl.sys.dimension.baseDimension * 2,
+                    decoration: BoxDecoration(
+                      color: AppTheme.red,
+                      borderRadius:
+                          AppTheme.dl.sys.dimension.shape.corner.circle,
+                    ),
+                  ),
+                  SizedBox(
+                    width: AppTheme.dl.sys.dimension.baseDimension,
+                  ),
+                  Text(
+                    'Major Updates',
+                    style: Theme.of(context).textTheme.bodySmall,
+                  ),
+                ],
+              ),
+            ],
+          ),
         ],
       ),
     );
