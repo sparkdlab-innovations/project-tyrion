@@ -5,37 +5,49 @@ import 'package:tyrion/src/utils/theme/theme.dart';
 class GameIconCard extends StatelessWidget {
   final String gameId;
   final String imageUrl;
+  final double height;
+  final double width;
+  final void Function()? onTap;
+  final void Function()? onLongPress;
 
-  const GameIconCard({
+  GameIconCard({
     super.key,
     required this.gameId,
     required this.imageUrl,
+    this.height = 120,
+    this.width = 120,
+    this.onTap,
+    this.onLongPress,
   });
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-      elevation: 0,
-      shape: RoundedRectangleBorder(
-        side: BorderSide(
-          color: AppTheme.dl.sys.color.outline,
+    return SizedBox(
+      height: height,
+      width: width,
+      child: Card(
+        elevation: 0,
+        shape: RoundedRectangleBorder(
+          side: BorderSide(
+            color: AppTheme.dl.sys.color.outline,
+          ),
+          borderRadius: const BorderRadius.all(Radius.circular(12)),
         ),
-        borderRadius: const BorderRadius.all(Radius.circular(12)),
-      ),
-      margin: EdgeInsets.symmetric(
-        horizontal: AppTheme.dl.sys.dimension.baseDimension * 2,
-        vertical: AppTheme.dl.sys.dimension.baseDimension * 2,
-      ),
-      clipBehavior: Clip.hardEdge,
-      child: Ink.image(
-        height: 100,
-        width: 100,
-        image: CachedNetworkImageProvider(imageUrl),
-        fit: BoxFit.cover,
-        child: InkWell(
-          onTap: () {
-            // Navigator.pushNamed(context, '/game/$gameId');
-          },
+        margin: EdgeInsets.symmetric(
+          horizontal: AppTheme.dl.sys.dimension.baseDimension * 2,
+          vertical: AppTheme.dl.sys.dimension.baseDimension * 2,
+        ),
+        clipBehavior: Clip.hardEdge,
+        child: Ink.image(
+          image: CachedNetworkImageProvider(imageUrl),
+          fit: BoxFit.cover,
+          child: InkWell(
+            onTap: onTap ??
+                () {
+                  // Navigator.pushNamed(context, '/game/$gameId');
+                },
+            onLongPress: onLongPress,
+          ),
         ),
       ),
     );

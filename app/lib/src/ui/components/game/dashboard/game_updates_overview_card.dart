@@ -40,7 +40,7 @@ class GameUpdatesOverviewCard extends StatelessWidget {
           // TODO: Add button to go to all updates page
           // FUCKE: hello wrld
           Text(
-            AppStrings.commonWordOverview,
+            AppStrings.gameDashboardOutlook,
             style: Theme.of(context).textTheme.titleMedium,
           ),
           SizedBox(

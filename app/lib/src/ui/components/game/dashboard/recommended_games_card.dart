@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:tyrion/src/store/constants/strings.dart';
 import 'package:tyrion/src/ui/components/shared/game_icon_card.dart';
@@ -21,8 +23,6 @@ class RecommendedGamesCard extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          // TODO: Add button to go to all updates page
-          // FUCKE: hello wrld
           Text(
             AppStrings.gameDashboardRecommended,
             style: Theme.of(context).textTheme.titleMedium,
@@ -32,35 +32,33 @@ class RecommendedGamesCard extends StatelessWidget {
           ),
           LayoutBuilder(
             builder: (context, constraints) {
-              return SingleChildScrollView(
-                scrollDirection: Axis.horizontal,
-                child: ConstrainedBox(
-                  constraints: constraints.copyWith(
-                    minWidth: constraints.maxWidth,
-                    maxWidth: double.infinity,
+              return Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                mainAxisSize: MainAxisSize.max,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  GameIconCard(
+                    gameId: 'gameId',
+                    imageUrl:
+                        'https://ik.imagekit.io/tyrion/games/94140/cover.jpg?tr=n-medium_thumbnail',
+                    height: min(constraints.maxWidth / 3, 120),
+                    width: min(constraints.maxWidth / 3, 120),
                   ),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      GameIconCard(
-                        gameId: 'gameId',
-                        imageUrl:
-                            'https://ik.imagekit.io/tyrion/games/94140/cover.jpg?tr=n-medium_thumbnail',
-                      ),
-                      GameIconCard(
-                        gameId: 'gameId',
-                        imageUrl:
-                            'https://ik.imagekit.io/tyrion/games/94140/cover.jpg?tr=n-medium_thumbnail',
-                      ),
-                      GameIconCard(
-                        gameId: 'gameId',
-                        imageUrl:
-                            'https://ik.imagekit.io/tyrion/games/94140/cover.jpg?tr=n-medium_thumbnail',
-                      ),
-                    ],
+                  GameIconCard(
+                    gameId: 'gameId',
+                    imageUrl:
+                        'https://ik.imagekit.io/tyrion/games/94140/cover.jpg?tr=n-medium_thumbnail',
+                    height: min(constraints.maxWidth / 3, 120),
+                    width: min(constraints.maxWidth / 3, 120),
                   ),
-                ),
+                  GameIconCard(
+                    gameId: 'gameId',
+                    imageUrl:
+                        'https://ik.imagekit.io/tyrion/games/94140/cover.jpg?tr=n-medium_thumbnail',
+                    height: min(constraints.maxWidth / 3, 120),
+                    width: min(constraints.maxWidth / 3, 120),
+                  ),
+                ],
               );
             },
           ),
