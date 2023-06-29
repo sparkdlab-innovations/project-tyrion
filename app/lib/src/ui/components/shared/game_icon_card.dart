@@ -1,3 +1,4 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:tyrion/src/utils/theme/theme.dart';
@@ -44,7 +45,7 @@ class GameIconCard extends StatelessWidget {
           child: InkWell(
             onTap: onTap ??
                 () {
-                  // Navigator.pushNamed(context, '/game/$gameId');
+                  AutoRouter.of(context).pushNamed('/games/$gameId');
                 },
             onLongPress: onLongPress,
           ),

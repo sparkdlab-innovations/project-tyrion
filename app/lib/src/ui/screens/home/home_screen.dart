@@ -18,8 +18,8 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return AutoTabsRouter.pageView(
       routes: [
-        ...data.pinnedSegmentsPageRouteInfos,
         DashboardRoute(),
+        ...data.pinnedSegmentsPageRouteInfos,
         MoreRoute(),
       ],
       homeIndex: 0,

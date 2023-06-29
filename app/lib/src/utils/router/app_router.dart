@@ -5,6 +5,7 @@ import 'package:flutter/foundation.dart';
 import 'package:tyrion/src/pages/dashboard_page.dart';
 import 'package:tyrion/src/pages/dev_theme_test_page.dart';
 import 'package:tyrion/src/pages/game/game_dashboard_page.dart';
+import 'package:tyrion/src/pages/game/game_details_page.dart';
 import 'package:tyrion/src/pages/home_page.dart';
 import 'package:tyrion/src/pages/more_page.dart';
 import 'package:tyrion/src/store/constants/strings.dart';
@@ -13,6 +14,9 @@ part 'app_router.gr.dart';
 
 @AutoRouterConfig(replaceInRouteName: 'Page,Route')
 class AppRouter extends _$AppRouter {
+  // TODO: add route gaurds to check if user is logged in
+  // TODO: add route gaurds to check if user has access to segment
+
   @override
   List<AutoRoute> get routes => [
         AutoRoute(
@@ -65,6 +69,19 @@ class AppRouter extends _$AppRouter {
             )
           ],
         ),
+        AutoRoute(
+          page: GameDetailsRoute.page,
+          path: '/games/:gameId',
+          initial: false,
+          fullMatch: false,
+          keepHistory: true,
+          title: (context, data) {
+            return 'Details';
+          },
+          type: RouteType.material(),
+          usesPathAsKey: true,
+        ),
+        RedirectRoute(path: '*', redirectTo: '/'),
         // AutoRoute(
         //   page: DevThemeTestRoute.page,
         //   path: '/dev/theme',
