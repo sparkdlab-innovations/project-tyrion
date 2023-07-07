@@ -34,21 +34,13 @@ class GameDashboardScreen extends StatelessWidget {
                   followingMinorUpdates: 2,
                   followingNoUpdates: 3,
                 ),
-                SizedBox(
-                  height: AppTheme.dl.sys.dimension.baseDimension * 4,
-                ),
+                SizedBox(height: AppTheme.dl.sys.dimension.baseDimension),
                 PinnedGamesCard(),
-                SizedBox(
-                  height: AppTheme.dl.sys.dimension.baseDimension * 4,
-                ),
+                SizedBox(height: AppTheme.dl.sys.dimension.baseDimension),
                 LatestGameUpdatesCard(),
-                SizedBox(
-                  height: AppTheme.dl.sys.dimension.baseDimension * 4,
-                ),
+                SizedBox(height: AppTheme.dl.sys.dimension.baseDimension),
                 RecommendedGamesCard(),
-                SizedBox(
-                  height: AppTheme.dl.sys.dimension.baseDimension * 4,
-                ),
+                SizedBox(height: AppTheme.dl.sys.dimension.baseDimension),
               ],
             ),
           ),
