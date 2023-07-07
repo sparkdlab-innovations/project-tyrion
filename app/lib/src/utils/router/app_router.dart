@@ -6,6 +6,7 @@ import 'package:tyrion/src/pages/dashboard_page.dart';
 import 'package:tyrion/src/pages/dev_theme_test_page.dart';
 import 'package:tyrion/src/pages/game/game_dashboard_page.dart';
 import 'package:tyrion/src/pages/game/game_details_page.dart';
+import 'package:tyrion/src/pages/game/game_updates_feed_page.dart';
 import 'package:tyrion/src/pages/home_page.dart';
 import 'package:tyrion/src/pages/more_page.dart';
 import 'package:tyrion/src/store/constants/strings.dart';
@@ -68,6 +69,18 @@ class AppRouter extends _$AppRouter {
               usesPathAsKey: true,
             )
           ],
+        ),
+        AutoRoute(
+          page: GameUpdatesFeedRoute.page,
+          path: '/games/feed',
+          initial: false,
+          fullMatch: true,
+          keepHistory: true,
+          title: (context, data) {
+            return 'Game Updates Feed';
+          },
+          type: RouteType.material(),
+          usesPathAsKey: true,
         ),
         AutoRoute(
           page: GameDetailsRoute.page,
