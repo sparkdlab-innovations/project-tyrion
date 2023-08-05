@@ -65,7 +65,7 @@ export default async function addNewGame(
     throw error;
   }
 
-  _documentReference.update({
+  let statusUpdatePromises = _documentReference.update({
     status: TaskStatus.inProgress,
     progress: 0,
     message: 'Starting new environment...',
@@ -88,12 +88,14 @@ export default async function addNewGame(
     //   GAMES_MAIN_SOURCE_PASSWORD.value(),
     // );
 
-    _documentReference.update({
-      status: TaskStatus.inProgress,
-      progress: 40,
-      message: 'Retrieving game data...',
-      updatedAt: Date.now(),
-    });
+    statusUpdatePromises = statusUpdatePromises.then(() =>
+      _documentReference.update({
+        status: TaskStatus.inProgress,
+        progress: 40,
+        message: 'Retrieving game data...',
+        updatedAt: Date.now(),
+      }),
+    );
 
     const _rawGameData = await getGameData(
       _browserSession,
@@ -132,19 +134,22 @@ export default async function addNewGame(
     };
     */
 
-    _documentReference.update({
-      status: TaskStatus.inProgress,
-      progress: 70,
-      message: 'Creating new game entry...',
-      updatedAt: Date.now(),
-    });
+    statusUpdatePromises = statusUpdatePromises.then(() =>
+      _documentReference.update({
+        status: TaskStatus.inProgress,
+        progress: 70,
+        message: 'Creating new game entry...',
+        updatedAt: Date.now(),
+      }),
+    );
 
     await getFirestore()
       .collection('games')
       .doc(_data.threadId.toString())
       .set(_gameData);
 
-    _documentReference.update({
+    await statusUpdatePromises;
+    await _documentReference.update({
       status: TaskStatus.inProgress,
       progress: 90,
       message: 'Closing environment...',
