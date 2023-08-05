@@ -5,12 +5,7 @@ export default async function closeSession(
   browserSession: BrowserSession,
 ): Promise<void> {
   try {
-    const { browser, incognitoContext } = browserSession;
-
-    if (incognitoContext) {
-      incognitoContext.removeAllListeners();
-      await incognitoContext.close();
-    }
+    const { browser } = browserSession;
 
     if (browser && browser.isConnected()) {
       browser.close();

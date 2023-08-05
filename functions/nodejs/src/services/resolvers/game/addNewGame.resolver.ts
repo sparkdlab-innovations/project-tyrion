@@ -7,15 +7,12 @@ import moment from 'moment';
 import { isNewGameTaskQueueType } from '../../../data/guards/taskQueue/newGameTaskQueue.guard';
 import { GameType } from '../../../data/types/game';
 import { TaskStatus } from '../../../data/types/taskQueue/taskStatus.enum';
-import {
-  GAMES_MAIN_SOURCE_LINK,
-  GAMES_MAIN_SOURCE_PASSWORD,
-  GAMES_MAIN_SOURCE_USERNAME,
-} from '../../../env';
+import { GAMES_MAIN_SOURCE_LINK } from '../../../env';
 import AppError from '../../../utils/error/appError';
 import {
+  closeSession,
   getGameData,
-  loginSession,
+  // loginSession,
   startSession,
 } from '../../scripts/game/scraper';
 
@@ -78,18 +75,18 @@ export default async function addNewGame(
   try {
     const _browserSession = await startSession();
 
-    _documentReference.update({
-      status: TaskStatus.inProgress,
-      progress: 20,
-      message: 'Setting up environment...',
-      updatedAt: Date.now(),
-    });
+    // _documentReference.update({
+    //   status: TaskStatus.inProgress,
+    //   progress: 20,
+    //   message: 'Setting up environment...',
+    //   updatedAt: Date.now(),
+    // });
 
-    await loginSession(
-      _browserSession,
-      GAMES_MAIN_SOURCE_USERNAME.value(),
-      GAMES_MAIN_SOURCE_PASSWORD.value(),
-    );
+    // await loginSession(
+    //   _browserSession,
+    //   GAMES_MAIN_SOURCE_USERNAME.value(),
+    //   GAMES_MAIN_SOURCE_PASSWORD.value(),
+    // );
 
     _documentReference.update({
       status: TaskStatus.inProgress,
@@ -137,7 +134,7 @@ export default async function addNewGame(
 
     _documentReference.update({
       status: TaskStatus.inProgress,
-      progress: 80,
+      progress: 70,
       message: 'Creating new game entry...',
       updatedAt: Date.now(),
     });
@@ -148,11 +145,22 @@ export default async function addNewGame(
       .set(_gameData);
 
     _documentReference.update({
+      status: TaskStatus.inProgress,
+      progress: 90,
+      message: 'Closing environment...',
+      updatedAt: Date.now(),
+    });
+
+    await closeSession(_browserSession);
+
+    await _documentReference.update({
       status: TaskStatus.successful,
       progress: 100,
       message: 'New game added successfully.',
       updatedAt: Date.now(),
     });
+
+    return;
   } catch (e) {
     const error = AppError.fromErrorOrCode(
       'game/resolver/unknown-error',
