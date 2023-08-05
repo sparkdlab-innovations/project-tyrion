@@ -1,3 +1,4 @@
+import * as firebaseConsole from 'firebase-functions/logger';
 import moment from 'moment';
 
 /**
@@ -43,31 +44,27 @@ export default class Log {
    * current time, module name and the message
    * as well as the data and stack trace if provided.
    * @param {string} message
-   * @param {string | undefined} data
+   * @param {object | undefined} data
    * @param {string | undefined} stackTrace
    * @return {void}
    * @memberof Log
    * @method error
    * @instance
    */
-  debug(
-    message: string,
-    data: string | undefined,
-    stackTrace: string | undefined,
-  ): void {
+  debug(message: string, data?: object, stackTrace?: string): void {
     // Get the current time
     const now = this.currentTime();
 
     // Print the message
-    console.debug(`${now} | ${this.module} | DEBUG | ${message}`);
+    firebaseConsole.debug(`${now} | ${this.module} | DEBUG | ${message}`);
 
     // Print the data and stack trace, if available
     if (data) {
-      // Group the data for better readability
-      console.group(`${now} | ${this.module} | DEBUG DATA`);
-      console.debug(data);
-      console.debug(stackTrace);
-      console.groupEnd();
+      firebaseConsole.debug(
+        `${now} | ${this.module} | DEBUG DATA`,
+        data,
+        stackTrace,
+      );
     }
   }
 
@@ -78,25 +75,22 @@ export default class Log {
    * current time, module name and the message
    * as well as the data if provided.
    * @param {string} message
-   * @param {string | undefined} data
+   * @param {object | undefined} data
    * @return {void}
    * @memberof Log
    * @method error
    * @instance
    */
-  verbose(message: string, data: string | undefined): void {
+  verbose(message: string, data?: object): void {
     // Get the current time
     const now = this.currentTime();
 
     // Print the message
-    console.log(`${now} | ${this.module} | VERBOSE | ${message}`);
+    firebaseConsole.log(`${now} | ${this.module} | VERBOSE | ${message}`);
 
     // Print the data, if available
     if (data) {
-      // Group the data for better readability
-      console.group(`${now} | ${this.module} | VERBOSE DATA`);
-      console.log(data);
-      console.groupEnd();
+      firebaseConsole.log(`${now} | ${this.module} | VERBOSE DATA`, data);
     }
   }
 
@@ -113,7 +107,9 @@ export default class Log {
    */
   info(message: string): void {
     // Print the message
-    console.info(`${this.currentTime()} | ${this.module} | INFO | ${message}`);
+    firebaseConsole.info(
+      `${this.currentTime()} | ${this.module} | INFO | ${message}`,
+    );
   }
 
   /**
@@ -122,14 +118,22 @@ export default class Log {
    * Logs the message to the console with the
    * current time, module name and the message.
    * @param {string} message
+   * @param {object | undefined} data
    * @return {void}
    * @memberof Log
    * @method error
    * @instance
    */
-  warn(message: string): void {
+  warn(message: string, data?: object): void {
+    // Get the current time
+    const now = this.currentTime();
+
     // Print the message
-    console.warn(`${this.currentTime()} | ${this.module} | WARN | ${message}`);
+    firebaseConsole.warn(
+      `${now} | ${this.module} | WARN | ${message}${
+        data ? ` | Data: ${data}` : ''
+      }}`,
+    );
   }
 
   /**
@@ -146,22 +150,21 @@ export default class Log {
    * @method error
    * @instance
    */
-  error(
-    message: string,
-    error: string | object | undefined,
-    stackTrace: string | undefined,
-  ): void {
+  error(message: string, error?: string | object, stackTrace?: string): void {
     // Get the current time
     const now = this.currentTime();
+
     // Print the message
-    console.error(`${now} | ${this.module} | ERROR | ${message}`);
+    firebaseConsole.error(`${now} | ${this.module} | ERROR | ${message}`);
+
     // Print the error and stack trace, if available
     if (error) {
       // Group the data for better readability
-      console.group(`${now} | ${this.module} | ERROR DATA`);
-      console.error(error);
-      console.error(stackTrace);
-      console.groupEnd();
+      firebaseConsole.error(
+        `${now} | ${this.module} | ERROR DATA`,
+        error,
+        stackTrace,
+      );
     }
   }
 }
