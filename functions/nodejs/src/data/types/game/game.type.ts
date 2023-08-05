@@ -7,10 +7,9 @@ export type GameLinkType = {
   source: string;
 };
 
-export type BasicGameType = {
+export type GameType = {
   id?: string;
   name: string;
-  title: string;
   description: string;
   pageUrl: string;
   coverImageUrl: string;
@@ -21,14 +20,16 @@ export type BasicGameType = {
   version: string;
   releaseDate: number;
   threadUpdated: number;
-};
-
-export type GameType = BasicGameType & {
   developer: string;
-  developerUrl: string;
   engine: string;
   os: string[];
   languages: string[];
+  censored: boolean;
+};
+
+export type ExtendedGameType = GameType & {
+  developerUrl: string;
   downloadText: string;
   downloadLinks: GameLinkType[];
+  otherContent: string[];
 };

@@ -10,6 +10,7 @@ export const TITLE_REGEX = new RegExp(
   /^((?:\b\S+?\b\s-\s\b)+)?(.+?)((?:\s\[.+?\])+)(?:.+?)$/,
 );
 export const TAG_VALUES = ['VN', 'Others', 'Unity', 'HTML', "Ren'Py", 'RPGM'];
+export const ENGINE_VALUES = ['Others', 'Unity', 'HTML', "Ren'Py", 'RPGM'];
 export const STATUS_VALUES = [
   'Completed',
   'Onhold',

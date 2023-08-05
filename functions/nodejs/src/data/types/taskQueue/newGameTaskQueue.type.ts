@@ -2,7 +2,7 @@ import { TaskStatus } from './taskStatus.enum';
 
 export type NewGameTaskQueueType = {
   id?: string;
-  url: string;
+  threadId: number;
   status: TaskStatus;
   progress?: number;
   error?: string;

@@ -12,14 +12,22 @@ export function isNewGameTaskQueueType(
     return false;
   }
 
-  const { id, url, status, progress, error, message, createdAt, updatedAt } =
-    task as NewGameTaskQueueType;
+  const {
+    id,
+    threadId,
+    status,
+    progress,
+    error,
+    message,
+    createdAt,
+    updatedAt,
+  } = task as NewGameTaskQueueType;
 
   if (typeof id !== 'string' && typeof id !== 'undefined') {
     return false;
   }
 
-  if (typeof url !== 'string') {
+  if (typeof threadId !== 'number') {
     return false;
   }
 

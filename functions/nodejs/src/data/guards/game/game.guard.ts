@@ -1,5 +1,5 @@
 import {
-  BasicGameType,
+  ExtendedGameType,
   GameLinkType,
   GameType,
 } from '../../types/game/game.type';
@@ -39,78 +39,7 @@ export function isGameLink(gameLink: unknown): gameLink is GameLinkType {
 /**
  * Checks if the provided data is a valid BasicGameType.
  * @param {unknown} game
- * @return {BasicGameType}
- */
-export function isBasicGame(game: unknown): game is BasicGameType {
-  if (typeof game !== 'object' || game === null) {
-    return false;
-  }
-
-  const {
-    id,
-    name,
-    description,
-    pageUrl,
-    coverImageUrl,
-    galleryImageUrls,
-    genres,
-    status,
-    version,
-    releaseDate,
-    threadUpdated,
-  } = game as BasicGameType;
-
-  if (typeof id !== 'string' && typeof id !== 'undefined') {
-    return false;
-  }
-
-  if (typeof name !== 'string') {
-    return false;
-  }
-
-  if (typeof description !== 'string') {
-    return false;
-  }
-
-  if (typeof pageUrl !== 'string') {
-    return false;
-  }
-
-  if (typeof coverImageUrl !== 'string') {
-    return false;
-  }
-
-  if (!isArrayOfStrings(galleryImageUrls)) {
-    return false;
-  }
-
-  if (!isArrayOfStrings(genres)) {
-    return false;
-  }
-
-  if (typeof status !== 'number') {
-    return false;
-  }
-
-  if (typeof version !== 'string') {
-    return false;
-  }
-
-  if (typeof releaseDate !== 'number') {
-    return false;
-  }
-
-  if (typeof threadUpdated !== 'number') {
-    return false;
-  }
-
-  return true;
-}
-
-/**
- * Checks if the provided data is a valid GameType.
- * @param {unknown} game
- * @return {GameType}
+ * @return {ExtendedGameType}
  */
 export function isGame(game: unknown): game is GameType {
   if (typeof game !== 'object' || game === null) {
@@ -125,18 +54,16 @@ export function isGame(game: unknown): game is GameType {
     coverImageUrl,
     galleryImageUrls,
     genres,
+    tags,
     status,
     version,
     releaseDate,
     threadUpdated,
     developer,
-    developerUrl,
-    tags,
     engine,
     os,
     languages,
-    downloadText,
-    downloadLinks,
+    censored,
   } = game as GameType;
 
   if (typeof id !== 'string' && typeof id !== 'undefined') {
@@ -167,7 +94,11 @@ export function isGame(game: unknown): game is GameType {
     return false;
   }
 
-  if (typeof status !== 'string') {
+  if (!isArrayOfStrings(tags)) {
+    return false;
+  }
+
+  if (typeof status !== 'number') {
     return false;
   }
 
@@ -187,11 +118,108 @@ export function isGame(game: unknown): game is GameType {
     return false;
   }
 
-  if (typeof developerUrl !== 'string') {
+  if (typeof engine !== 'string') {
+    return false;
+  }
+
+  if (!isArrayOfStrings(os)) {
+    return false;
+  }
+
+  if (!isArrayOfStrings(languages)) {
+    return false;
+  }
+
+  if (typeof censored !== 'boolean') {
+    return false;
+  }
+
+  return true;
+}
+
+/**
+ * Checks if the provided data is a valid GameType.
+ * @param {unknown} game
+ * @return {ExtendedGameType}
+ */
+export function isExtendedGame(game: unknown): game is ExtendedGameType {
+  if (typeof game !== 'object' || game === null) {
+    return false;
+  }
+
+  const {
+    id,
+    name,
+    description,
+    pageUrl,
+    coverImageUrl,
+    galleryImageUrls,
+    genres,
+    tags,
+    status,
+    version,
+    releaseDate,
+    threadUpdated,
+    developer,
+    engine,
+    os,
+    languages,
+    censored,
+    developerUrl,
+    downloadText,
+    downloadLinks,
+    otherContent,
+  } = game as ExtendedGameType;
+
+  if (typeof id !== 'string' && typeof id !== 'undefined') {
+    return false;
+  }
+
+  if (typeof name !== 'string') {
+    return false;
+  }
+
+  if (typeof description !== 'string') {
+    return false;
+  }
+
+  if (typeof pageUrl !== 'string') {
+    return false;
+  }
+
+  if (typeof coverImageUrl !== 'string') {
+    return false;
+  }
+
+  if (!isArrayOfStrings(galleryImageUrls)) {
+    return false;
+  }
+
+  if (!isArrayOfStrings(genres)) {
     return false;
   }
 
   if (!isArrayOfStrings(tags)) {
+    return false;
+  }
+
+  if (typeof status !== 'number') {
+    return false;
+  }
+
+  if (typeof version !== 'string') {
+    return false;
+  }
+
+  if (typeof releaseDate !== 'number') {
+    return false;
+  }
+
+  if (typeof threadUpdated !== 'number') {
+    return false;
+  }
+
+  if (typeof developer !== 'string') {
     return false;
   }
 
@@ -207,11 +235,23 @@ export function isGame(game: unknown): game is GameType {
     return false;
   }
 
+  if (typeof censored !== 'boolean') {
+    return false;
+  }
+
+  if (typeof developerUrl !== 'string') {
+    return false;
+  }
+
   if (typeof downloadText !== 'string') {
     return false;
   }
 
   if (!isArrayOfObject<GameLinkType>(downloadLinks, isGameLink)) {
+    return false;
+  }
+
+  if (!isArrayOfStrings(otherContent)) {
     return false;
   }
 

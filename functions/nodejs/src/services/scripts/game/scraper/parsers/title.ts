@@ -1,10 +1,16 @@
 import { GameStatus } from '../../../../../data/types/game/gameStatus.enum';
 import { AppError } from '../../../../../utils/error';
-import { STATUS_VALUES, TAG_VALUES, TITLE_REGEX } from './constants';
+import {
+  ENGINE_VALUES,
+  STATUS_VALUES,
+  TAG_VALUES,
+  TITLE_REGEX,
+} from './constants';
 
 export default function parseTitle(title: string): {
   name: string;
   tags: string[];
+  engine: string;
   status: GameStatus;
   version: string;
   developer: string;
@@ -24,6 +30,8 @@ export default function parseTitle(title: string): {
       .split(' - ')
       .filter((val) => TAG_VALUES.includes(val))
       .map((val) => val?.trim());
+
+    const engine = tags.filter((val) => ENGINE_VALUES.includes(val))[0];
 
     const status = matches[1]
       .split(' - ')
@@ -47,6 +55,7 @@ export default function parseTitle(title: string): {
     if (status === 'Completed') {
       return {
         tags,
+        engine,
         status: GameStatus.completed,
         name: matches[2].trim(),
         version,
@@ -55,6 +64,7 @@ export default function parseTitle(title: string): {
     } else if (status === 'Onhold') {
       return {
         tags,
+        engine,
         status: GameStatus.onHold,
         name: matches[2].trim(),
         version,
@@ -63,6 +73,7 @@ export default function parseTitle(title: string): {
     } else if (status === 'Abandoned') {
       return {
         tags,
+        engine,
         status: GameStatus.abandoned,
         name: matches[2].trim(),
         version,
@@ -71,6 +82,7 @@ export default function parseTitle(title: string): {
     } else if (status === 'Demo') {
       return {
         tags,
+        engine,
         status: GameStatus.demo,
         name: matches[2].trim(),
         version,
@@ -79,6 +91,7 @@ export default function parseTitle(title: string): {
     } else {
       return {
         tags,
+        engine,
         status: GameStatus.ongoing,
         name: matches[2].trim(),
         version,
