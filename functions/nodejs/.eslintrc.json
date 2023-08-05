@@ -7,12 +7,12 @@
   },
   "extends": [
     "eslint:recommended",
-    "prettier",
     "plugin:import/errors",
     "plugin:import/warnings",
     "plugin:import/typescript",
     "google",
-    "plugin:@typescript-eslint/recommended"
+    "plugin:@typescript-eslint/recommended",
+    "prettier"
   ],
   "parser": "@typescript-eslint/parser",
   "parserOptions": {
@@ -23,20 +23,12 @@
   "ignorePatterns": [
     "/lib/**/*" // Ignore built files.
   ],
-  "plugins": ["@typescript-eslint", "prettier", "import"],
+  "plugins": ["@typescript-eslint", "import"],
   "rules": {
-    "quotes": ["error", "single"],
-    "semi": ["error", "always"],
     "import/no-unresolved": 0,
-    "indent": ["error", 2],
-    "linebreak-style": ["error", "windows"],
-    "object-curly-spacing": ["error", "always"],
-    "object-curly-newline": [
-      "error",
-      {
-        "multiline": true
-      }
-    ],
-    "@typescript-eslint/no-inferrable-types": ["off"]
+    "linebreak-style": ["warn", "windows"],
+    "object-curly-spacing": ["warn", "always"],
+    "@typescript-eslint/no-inferrable-types": ["off"],
+    "require-jsdoc": 0
   }
 }
