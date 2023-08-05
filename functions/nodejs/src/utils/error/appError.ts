@@ -156,6 +156,19 @@ export default class AppError implements Error {
   }
 
   /**
+   * To String
+   * @description
+   * Returns a string representation of the error
+   * @memberof AppError
+   * @method toString
+   * @public
+   * @return {string} string representation of the error
+   */
+  public toString(): string {
+    return `${this.module}/${this.name} | ${this.message}`;
+  }
+
+  /**
    * Is AppError
    * @description
    * Checks if the provided error is an AppError
