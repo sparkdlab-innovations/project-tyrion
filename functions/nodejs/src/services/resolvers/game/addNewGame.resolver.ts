@@ -15,6 +15,7 @@ import {
   // loginSession,
   startSession,
 } from '../../scripts/game/scraper';
+import { uploadMedia } from '../../scripts/media';
 
 /**
  * Fetch and add a new game to the database.
@@ -91,7 +92,7 @@ export default async function addNewGame(
     statusUpdatePromises = statusUpdatePromises.then(() =>
       _documentReference.update({
         status: TaskStatus.inProgress,
-        progress: 40,
+        progress: 20,
         message: 'Retrieving game data...',
         updatedAt: Date.now(),
       }),
@@ -124,6 +125,43 @@ export default async function addNewGame(
       censored: _rawGameData.censored,
     };
 
+    statusUpdatePromises = statusUpdatePromises.then(() =>
+      _documentReference.update({
+        status: TaskStatus.inProgress,
+        progress: 50,
+        message: 'Uploading images...',
+        updatedAt: Date.now(),
+      }),
+    );
+
+    // TODO: Upload images to own server and store the links in the database.
+    // TODO: Tag the new images with the game id and the original link
+
+    _gameData.galleryImageUrls = await Promise.all(
+      _gameData.galleryImageUrls.map(async (url, index) => {
+        const _media = await uploadMedia(
+          url as string,
+          index.toString(),
+          'url',
+          `games/${_data.threadId}`,
+          [_data.threadId.toString(), url as string],
+          true,
+          false,
+        );
+        return _media;
+      }),
+    );
+
+    _gameData.coverImageUrl = await uploadMedia(
+      _gameData.coverImageUrl as string,
+      'cover',
+      'url',
+      `games/${_data.threadId}`,
+      [_data.threadId.toString(), _gameData.coverImageUrl as string],
+      true,
+      false,
+    );
+
     /*
     const _extendedGameData: GameType = {
       ..._basicGameData,
@@ -137,7 +175,7 @@ export default async function addNewGame(
     statusUpdatePromises = statusUpdatePromises.then(() =>
       _documentReference.update({
         status: TaskStatus.inProgress,
-        progress: 70,
+        progress: 80,
         message: 'Creating new game entry...',
         updatedAt: Date.now(),
       }),

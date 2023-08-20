@@ -1,3 +1,4 @@
+import { MediaType } from '../shared';
 import { GameStatus } from './gameStatus.enum';
 
 export type GameLinkType = {
@@ -12,8 +13,8 @@ export type GameType = {
   name: string;
   description: string;
   pageUrl: string;
-  coverImageUrl: string;
-  galleryImageUrls: string[];
+  coverImageUrl: string | MediaType;
+  galleryImageUrls: string[] | MediaType[];
   genres: string[];
   tags: string[];
   status: GameStatus;

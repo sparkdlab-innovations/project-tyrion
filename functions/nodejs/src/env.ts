@@ -28,6 +28,39 @@ export const NODE_ENV = defineString('NODE_ENV', {
   },
 });
 
+export const IMAGEKIT_PUBLIC_KEY = defineString('IMAGEKIT_PUBLIC_KEY', {
+  description: 'The public key for the ImageKit account.',
+  input: {
+    text: {
+      example: 'public_1234567890',
+      validationRegex: /^public_\w{19}\W\w{7}=$/,
+      validationErrorMessage: 'Please enter a valid public key',
+    },
+  },
+});
+
+export const IMAGEKIT_PRIVATE_KEY = defineString('IMAGEKIT_PRIVATE_KEY', {
+  description: 'The private key for the ImageKit account.',
+  input: {
+    text: {
+      example: 'private_1234567890',
+      validationRegex: /^private_\w{19}\W\w{7}=$/,
+      validationErrorMessage: 'Please enter a valid private key',
+    },
+  },
+});
+
+export const IMAGEKIT_URL_ENDPOINT = defineString('IMAGEKIT_URL_ENDPOINT', {
+  description: 'The URL endpoint for the ImageKit account.',
+  input: {
+    text: {
+      example: 'https://ik.imagekit.io/account-id',
+      validationRegex: /^https:\/\/ik\.imagekit\.io\/\w{3,}$/,
+      validationErrorMessage: 'Please enter a valid URL endpoint',
+    },
+  },
+});
+
 export const GAMES_MAIN_SOURCE_LINK = defineString('GAMES_MAIN_SOURCE_LINK', {
   description: 'The complete web address from which games are sourced.',
   input: {
