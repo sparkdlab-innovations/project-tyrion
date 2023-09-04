@@ -19,7 +19,8 @@ part 'firebase_config_provider.g.dart';
 
 @riverpod
 class FirebaseConfigState extends _$FirebaseConfigState {
-  // TODO: refactor into seperate functions for each product and call them in the build function
+  final String _emulatorAddress = '192.168.0.200';
+
   @override
   FutureOr<FirebaseConfig> build() async {
     FirebaseApp firebaseApp = await _initializeFirebaseApp();
@@ -49,11 +50,11 @@ class FirebaseConfigState extends _$FirebaseConfigState {
         FirebaseFirestore.instanceFor(app: firebaseApp);
 
     if (kDebugMode) {
-      firebaseFirestore.useFirestoreEmulator('localhost', 8080);
+      firebaseFirestore.useFirestoreEmulator(_emulatorAddress, 8080);
     }
 
     firebaseFirestore.settings = Settings(
-      cacheSizeBytes: 100,
+      cacheSizeBytes: 65536000,
       sslEnabled: true,
       ignoreUndefinedProperties: true,
       persistenceEnabled: true,
@@ -76,7 +77,7 @@ class FirebaseConfigState extends _$FirebaseConfigState {
         FirebaseFunctions.instanceFor(app: firebaseApp);
 
     if (kDebugMode) {
-      firebaseFunctions.useFunctionsEmulator('localhost', 5001);
+      firebaseFunctions.useFunctionsEmulator(_emulatorAddress, 5001);
     }
 
     state = await AsyncValue.guard(() async {
@@ -142,7 +143,7 @@ class FirebaseConfigState extends _$FirebaseConfigState {
     FirebaseAuth firebaseAuth = FirebaseAuth.instanceFor(app: firebaseApp);
 
     if (kDebugMode) {
-      await firebaseAuth.useAuthEmulator('localhost', 9099);
+      await firebaseAuth.useAuthEmulator(_emulatorAddress, 9099);
       await firebaseAuth.setSettings(
         appVerificationDisabledForTesting: true,
         phoneNumber: '+917077700564',

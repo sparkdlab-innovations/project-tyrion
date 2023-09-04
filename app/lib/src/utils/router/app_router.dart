@@ -1,7 +1,9 @@
 // ignore_for_file: unused_import
 
 import 'package:auto_route/auto_route.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
+import 'package:tyrion/src/pages/auth/sign_in_page.dart';
 import 'package:tyrion/src/pages/dashboard_page.dart';
 import 'package:tyrion/src/pages/dev_theme_test_page.dart';
 import 'package:tyrion/src/pages/game/game_dashboard_page.dart';
@@ -10,6 +12,7 @@ import 'package:tyrion/src/pages/game/game_updates_feed_page.dart';
 import 'package:tyrion/src/pages/home_page.dart';
 import 'package:tyrion/src/pages/more_page.dart';
 import 'package:tyrion/src/store/constants/strings.dart';
+import 'package:tyrion/src/utils/router/guards/auth_guard.dart';
 
 part 'app_router.gr.dart';
 
@@ -21,6 +24,18 @@ class AppRouter extends _$AppRouter {
   @override
   List<AutoRoute> get routes => [
         AutoRoute(
+          page: SignInRoute.page,
+          path: '/signIn',
+          initial: false,
+          fullMatch: true,
+          keepHistory: true,
+          title: (context, data) {
+            return 'Sign In';
+          },
+          type: RouteType.material(),
+          usesPathAsKey: true,
+        ),
+        AutoRoute(
           page: HomeRoute.page,
           path: '/',
           initial: true,
@@ -30,6 +45,7 @@ class AppRouter extends _$AppRouter {
             return AppStrings.appHomeTitle;
           },
           type: RouteType.material(),
+          guards: [AuthGuard()],
           usesPathAsKey: true,
           children: <AutoRoute>[
             AutoRoute(
@@ -80,6 +96,7 @@ class AppRouter extends _$AppRouter {
             return 'Game Updates Feed';
           },
           type: RouteType.material(),
+          guards: [AuthGuard()],
           usesPathAsKey: true,
         ),
         AutoRoute(
@@ -92,6 +109,7 @@ class AppRouter extends _$AppRouter {
             return 'Details';
           },
           type: RouteType.material(),
+          guards: [AuthGuard()],
           usesPathAsKey: true,
         ),
         RedirectRoute(path: '*', redirectTo: '/'),

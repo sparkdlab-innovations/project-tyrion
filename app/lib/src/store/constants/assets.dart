@@ -10,4 +10,7 @@ abstract class AppAssets {
 
   static String get launchVideo =>
       'assets/videos/launch_animations/${AppTheme.isDark ? 'dark' : 'light'}.mp4';
+
+  static String get tabletCheckRobot =>
+      'assets/images/illustrations/tablet_check.png';
 }

@@ -11,6 +11,12 @@ class AppInitProgress with _$AppInitProgress {
     @Default(NetworkLoadingStep.init) NetworkLoadingStep networkLoadingStep,
     @Default(0) int firebaseLoadingProgress,
   }) = _AppInitProgress;
+
+  bool get isComplete {
+    return themeLoadingStep == ThemeLoadingStep.complete &&
+        networkLoadingStep == NetworkLoadingStep.complete &&
+        firebaseLoadingProgress >= 75;
+  }
 }
 
 enum ThemeLoadingStep {
