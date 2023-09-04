@@ -43,6 +43,7 @@ export default async function uploadMedia(
     const result = await getImagekit().upload({
       file: fileData,
       fileName,
+      useUniqueFileName: false,
       folder: filePath,
       tags: [
         ...filePath
