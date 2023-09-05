@@ -1,6 +1,5 @@
 import { GameEmbedType } from '../game/gameEmbed.type';
 import { MediaType } from '../shared';
-import { UserAccessInterface } from './userAccess.type';
 
 export type UserInterface = {
   id?: string;
@@ -9,12 +8,10 @@ export type UserInterface = {
   email: string;
   picture: MediaType;
 
-  access: UserAccessInterface;
-
   gameLibrary: GameEmbedType[];
 };
 
 export type BasicUserInterface = Pick<
   UserInterface,
-  'id' | 'firstName' | 'lastName' | 'email' | 'picture' | 'access'
+  'id' | 'firstName' | 'lastName' | 'email' | 'picture'
 >;

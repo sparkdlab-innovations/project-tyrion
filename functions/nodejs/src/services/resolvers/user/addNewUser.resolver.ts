@@ -71,7 +71,6 @@ export default async function addNewUser(
       ...parseDisplayName(event.data.displayName ?? ''),
       email: event.data.email ?? '',
       picture: profile,
-      access: _userAccess,
     };
 
     await createUserRecord(event.data.uid, _userProfile);
