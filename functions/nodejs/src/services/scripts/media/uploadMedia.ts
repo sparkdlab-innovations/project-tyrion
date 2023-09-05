@@ -46,10 +46,7 @@ export default async function uploadMedia(
       useUniqueFileName: false,
       folder: filePath,
       tags: [
-        ...filePath
-          .split('/')
-          .filter((path) => path && path !== '')
-          .slice(1),
+        ...filePath.split('/').filter((path) => path && path !== ''),
         fileName,
         ...(isPrivate ? ['isPrivate'] : []),
         ...(fileDataType === 'url' ? [fileData as string] : []),
