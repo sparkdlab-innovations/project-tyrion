@@ -1,3 +1,3 @@
 export * from './user.type';
-export * from './userAccess.type';
+export * from './userClaims.type';
 export * from './userRole.enum';

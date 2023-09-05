@@ -3,7 +3,7 @@ import { AuthBlockingEvent } from 'firebase-functions/v2/identity';
 import { createUserRecord } from '../../../data/sources/user';
 import {
   BasicUserInterface,
-  UserAccessInterface,
+  UserClaimsInterface,
 } from '../../../data/types/user';
 import { AppError } from '../../../utils/error';
 import { uploadMedia } from '../../scripts/media';
@@ -52,19 +52,22 @@ export default async function addNewUser(
       true,
     );
 
-    const _userAccess: UserAccessInterface = {
-      segments: {
-        games: {
-          enabled: false,
-        },
-        stocks: {
-          enabled: false,
-        },
-        schedule: {
-          enabled: true,
-          isLocal: true,
+    const _userClaims: UserClaimsInterface = {
+      access: {
+        segments: {
+          games: {
+            enabled: false,
+          },
+          stocks: {
+            enabled: false,
+          },
+          schedule: {
+            enabled: true,
+            isLocal: true,
+          },
         },
       },
+      lastSignInIP: event.ipAddress,
     };
 
     const _userProfile: BasicUserInterface = {
@@ -77,7 +80,7 @@ export default async function addNewUser(
 
     return {
       emailVerified: true,
-      customClaims: _userAccess,
+      customClaims: _userClaims,
       disabled: false,
       displayName: event.data.displayName,
       photoURL: profile.url,

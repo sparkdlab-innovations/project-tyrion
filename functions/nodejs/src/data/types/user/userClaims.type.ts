@@ -34,3 +34,8 @@ export type UserAccessInterface = {
     [key in AppSegment]: SegmentAccessInterface;
   };
 };
+
+export type UserClaimsInterface = {
+  access: UserAccessInterface;
+  lastSignInIP: string;
+};
