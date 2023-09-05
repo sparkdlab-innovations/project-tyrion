@@ -4,7 +4,7 @@ import {
 } from 'firebase-functions/v2/firestore';
 import moment from 'moment';
 import { isNewGameTaskQueueType } from '../../../data/guards/taskQueue';
-import { createGame } from '../../../data/sources/game';
+import { createGameRecord } from '../../../data/sources/game';
 import { updateTaskQueueById } from '../../../data/sources/taskQueue';
 import { GameType } from '../../../data/types/game';
 import { TaskStatus } from '../../../data/types/taskQueue';
@@ -173,7 +173,7 @@ export default async function addNewGame(
       }),
     );
 
-    await createGame(_data.threadId, _gameData);
+    await createGameRecord(_data.threadId, _gameData);
 
     await statusUpdatePromises;
     await updateTaskQueueById('games', 'new', taskId, {

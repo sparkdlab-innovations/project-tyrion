@@ -1,1 +1,1 @@
-export { default as createGame } from './createGame.sources';
+export { default as createGameRecord } from './createGame.sources';

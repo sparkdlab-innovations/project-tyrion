@@ -5,6 +5,12 @@ import { addNewGame } from '../services/resolvers/game';
 // TODO: Refresh game - Fetch all data and update all embeds
 
 export const addNewGameFunction = onDocumentCreated(
-  'internalTaskQueue/games/new/{taskId}',
+  {
+    document: 'internalTaskQueue/games/new/{taskId}',
+    cpu: 'gcf_gen1',
+    memory: '512MiB',
+    timeoutSeconds: 60,
+    maxInstances: 2,
+  },
   addNewGame,
 );

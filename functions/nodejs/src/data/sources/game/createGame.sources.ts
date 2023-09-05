@@ -2,7 +2,7 @@ import { WriteResult, getFirestore } from 'firebase-admin/firestore';
 import { AppError } from '../../../utils/error';
 import { GameType } from '../../types/game';
 
-export default async function createGame(
+export default async function createGameRecord(
   threadId: number,
   data: GameType,
 ): Promise<WriteResult> {
@@ -17,7 +17,7 @@ export default async function createGame(
     return _writeResult;
   } catch (error) {
     throw AppError.fromErrorOrCode(
-      'game/datasources/update-unknown-error',
+      'game/datasources/create-unknown-error',
       error,
       `${threadId}`,
       new Error().stack,
