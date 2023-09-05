@@ -1,12 +1,5 @@
-import { TaskStatus } from './taskStatus.enum';
+import { TaskQueueType } from './taskQueue.type';
 
-export type NewGameTaskQueueType = {
-  id?: string;
+export type NewGameTaskQueueType = TaskQueueType & {
   threadId: number;
-  status: TaskStatus;
-  progress?: number;
-  error?: string;
-  message?: string;
-  createdAt: number;
-  updatedAt?: number;
 };

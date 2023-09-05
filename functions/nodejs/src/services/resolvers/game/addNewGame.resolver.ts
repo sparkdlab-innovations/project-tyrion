@@ -1,14 +1,15 @@
-import { getFirestore } from 'firebase-admin/firestore';
 import {
   FirestoreEvent,
   QueryDocumentSnapshot,
 } from 'firebase-functions/v2/firestore';
 import moment from 'moment';
+import { isNewGameTaskQueueType } from '../../../data/guards/taskQueue';
 import { isNewGameTaskQueueType } from '../../../data/guards/taskQueue/newGameTaskQueue.guard';
+import { updateTaskQueueById } from '../../../data/sources/taskQueue';
 import { GameType } from '../../../data/types/game';
-import { TaskStatus } from '../../../data/types/taskQueue/taskStatus.enum';
+import { TaskStatus } from '../../../data/types/taskQueue';
 import { GAMES_MAIN_SOURCE_LINK } from '../../../env';
-import AppError from '../../../utils/error/appError';
+import { AppError } from '../../../utils/error';
 import {
   closeSession,
   getGameData,
@@ -30,17 +31,13 @@ export default async function addNewGame(
     params: { taskId },
   } = event;
 
-  const _documentReference = getFirestore()
-    .collection('internalTaskQueue/games/new')
-    .doc(taskId);
-
   if (!document) {
     const error = AppError.fromCode(
       'game/resolver/data-missing',
       taskId,
       new Error().stack,
     );
-    await _documentReference.update({
+    await updateTaskQueueById('games', 'new', taskId, {
       status: TaskStatus.failed,
       progress: 100,
       error: error.toString(),
@@ -57,7 +54,7 @@ export default async function addNewGame(
       taskId,
       new Error().stack,
     );
-    await _documentReference.update({
+    await updateTaskQueueById('games', 'new', taskId, {
       status: TaskStatus.failed,
       progress: 100,
       error: error.toString(),
@@ -66,7 +63,7 @@ export default async function addNewGame(
     throw error;
   }
 
-  let statusUpdatePromises = _documentReference.update({
+  await updateTaskQueueById('games', 'new', taskId, {
     status: TaskStatus.inProgress,
     progress: 0,
     message: 'Starting new environment...',
@@ -76,7 +73,7 @@ export default async function addNewGame(
   try {
     const _browserSession = await startSession();
 
-    // _documentReference.update({
+    // await updateTaskQueueById('games', 'new', taskId, {
     //   status: TaskStatus.inProgress,
     //   progress: 20,
     //   message: 'Setting up environment...',
@@ -89,14 +86,12 @@ export default async function addNewGame(
     //   GAMES_MAIN_SOURCE_PASSWORD.value(),
     // );
 
-    statusUpdatePromises = statusUpdatePromises.then(() =>
-      _documentReference.update({
-        status: TaskStatus.inProgress,
-        progress: 20,
-        message: 'Retrieving game data...',
-        updatedAt: Date.now(),
-      }),
-    );
+    let statusUpdatePromises = updateTaskQueueById('games', 'new', taskId, {
+      status: TaskStatus.inProgress,
+      progress: 20,
+      message: 'Retrieving game data...',
+      updatedAt: Date.now(),
+    });
 
     const _rawGameData = await getGameData(
       _browserSession,
@@ -126,16 +121,13 @@ export default async function addNewGame(
     };
 
     statusUpdatePromises = statusUpdatePromises.then(() =>
-      _documentReference.update({
+      updateTaskQueueById('games', 'new', taskId, {
         status: TaskStatus.inProgress,
         progress: 50,
         message: 'Uploading images...',
         updatedAt: Date.now(),
       }),
     );
-
-    // TODO: Upload images to own server and store the links in the database.
-    // TODO: Tag the new images with the game id and the original link
 
     _gameData.galleryImageUrls = await Promise.all(
       _gameData.galleryImageUrls.map(async (url, index) => {
@@ -173,7 +165,7 @@ export default async function addNewGame(
     */
 
     statusUpdatePromises = statusUpdatePromises.then(() =>
-      _documentReference.update({
+      updateTaskQueueById('games', 'new', taskId, {
         status: TaskStatus.inProgress,
         progress: 80,
         message: 'Creating new game entry...',
@@ -187,7 +179,7 @@ export default async function addNewGame(
       .set(_gameData);
 
     await statusUpdatePromises;
-    await _documentReference.update({
+    await updateTaskQueueById('games', 'new', taskId, {
       status: TaskStatus.inProgress,
       progress: 90,
       message: 'Closing environment...',
@@ -196,7 +188,7 @@ export default async function addNewGame(
 
     await closeSession(_browserSession);
 
-    await _documentReference.update({
+    await updateTaskQueueById('games', 'new', taskId, {
       status: TaskStatus.successful,
       progress: 100,
       message: 'New game added successfully.',
@@ -211,7 +203,7 @@ export default async function addNewGame(
       taskId,
       new Error().stack,
     );
-    await _documentReference.update({
+    await updateTaskQueueById('games', 'new', taskId, {
       status: TaskStatus.failed,
       progress: 100,
       error: error.toString(),
