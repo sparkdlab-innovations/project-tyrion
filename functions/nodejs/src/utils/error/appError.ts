@@ -76,6 +76,15 @@ export default class AppError implements Error {
    * @param {string | undefined} cause
    * @param {string | undefined} stack
    * @return {AppError} AppError object
+   *
+   * @example
+   * ```ts
+   * AppError.fromErrorOrCode(
+   *  'module/submodule/code',
+   *  `Cause: ${cause}`,
+   *  new Error().stack
+   * );
+   * ```
    */
   public static fromCode(
     code: string,
@@ -118,6 +127,16 @@ export default class AppError implements Error {
    * @param {string | undefined} cause
    * @param {string | undefined} stack
    * @return {AppError} AppError object
+   *
+   * @example
+   * ```ts
+   * AppError.fromErrorOrCode(
+   *  'module/submodule/code',
+   *  error,
+   *  `Cause: ${cause}`,
+   *  new Error().stack
+   * );
+   * ```
    */
   public static fromErrorOrCode(
     code: string,

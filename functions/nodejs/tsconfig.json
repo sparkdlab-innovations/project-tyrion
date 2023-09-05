@@ -22,6 +22,7 @@
     "sourceMap": true,
     "declaration": true,
     "typeRoots": [
+      "src/types.d.ts",
       "src/data/types",
       "src/services/types",
       "node_modules/@types"
